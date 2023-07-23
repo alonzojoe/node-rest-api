@@ -38,56 +38,7 @@ DB_DATABASE=YOUR_DATABASE_NAME
 
 
 Database Setup
-Create the necessary database and tables by running the SQL script located at ./db/schema.sql. You can do this using a MySQL client or a database administration tool like phpMyAdmin.
 
-Usage
-
-
-Certainly! Here's the updated README.md for the "node-rest-api" repository:
-
-csharp
-Copy code
-# Node.js CRUD REST API - Posts
-
-This is a simple CRUD (Create, Read, Update, Delete) REST API for managing posts. It allows you to perform basic operations on posts such as creating, fetching, updating, and deleting.
-
-## Prerequisites
-
-- Node.js and npm installed on your machine
-- MySQL database with the required configuration
-
-## Installation
-
-1. Clone the repository to your local machine:
-
-   ```bash
-   git clone https://github.com/alonzojoe/node-rest-api.git
-Navigate to the project directory:
-
-bash
-Copy code
-cd node-rest-api
-Install the dependencies:
-
-bash
-Copy code
-npm install
-Rename .envexample to .env and fill in your configuration details:
-
-bash
-Copy code
-mv .envexample .env
-Configuration
-In the .env file, replace the placeholders with your specific configuration:
-
-env
-Copy code
-PORT=YOUR_PORT
-DB_HOST=YOUR_DATABASE_HOST
-DB_USERNAME=YOUR_DATABASE_USERNAME
-DB_PASSWORD=YOUR_DATABASE_PASSWORD
-DB_DATABASE=YOUR_DATABASE_NAME
-Database Setup
 Create the necessary database and tables by running the SQL script located at ./db/schema.sql. You can do this using a MySQL client or a database administration tool like phpMyAdmin.
 
 Usage
