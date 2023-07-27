@@ -92,8 +92,60 @@ const postsController = {
                 error: "Internal Server Error",
             });
         }
-    } 
-
+    },
+    getPostsWithComments: async (req, res) => {
+      try {
+        const query = `
+          SELECT 
+            p.id AS post_id,
+            p.text AS post_text,
+            c.id AS comment_id,
+            c.content AS comment_content
+          FROM posts AS p
+          LEFT JOIN comments AS c ON p.id = c.post_id
+          ORDER BY p.id ASC
+        `;
+    
+        const [rows, fields] = await pool.query(query);
+    
+        const postsMap = new Map(); // Use a Map to store unique posts
+        for (const row of rows) {
+          if (!postsMap.has(row.post_id)) {
+          
+            const post = {
+              id: row.post_id,
+              text: row.post_text,
+              comments: [],
+            };
+            postsMap.set(row.post_id, post);
+          }
+    
+          if (row.comment_id) {
+       
+            const post = postsMap.get(row.post_id);
+            post.comments.push({
+              id: row.comment_id,
+              content: row.comment_content,
+            });
+          }
+        }
+    
+        const posts = Array.from(postsMap.values());
+    
+        res.status(200).json({
+          data: posts,
+          status: 200,
+          message: "Get all posts with comments",
+        });
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({
+          status: 500,
+          error: "Internal Server Error",
+        });
+      }
+    },
+    
 }
 
 module.exports = postsController

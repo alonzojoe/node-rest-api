@@ -14,4 +14,6 @@ router.put("/:id", postsController.updatePost)
 
 router.delete("/:id", postsController.deletePost)
 
+router.get("/all/comments", postsController.getPostsWithComments)
+
 module.exports = router
